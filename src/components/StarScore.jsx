@@ -19,13 +19,13 @@ export default function StarScore({ value = 0, size = 'md' }) {
             <span className="text-ink-soft/60 text-lg font-bold"> / 100</span>
           </p>
         </div>
-        <span className="rounded-full border-[3px] border-ink bg-white px-3 py-1 text-sm font-bold">
+        <span className="rounded-full border border-line bg-white px-3 py-1 text-sm font-bold">
           {milestone}
         </span>
       </div>
 
       <div
-        className="relative mt-3 h-6 w-full overflow-hidden rounded-full border-[3px] border-ink bg-white"
+        className="relative mt-3 h-6 w-full overflow-hidden rounded-full border border-line bg-white"
         role="progressbar"
         aria-valuenow={clamped}
         aria-valuemin={0}

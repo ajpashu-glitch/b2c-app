@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Button, SectionHeading, Doodle, Mascot, Pill } from '../components/ui'
+import { Button, SectionHeading, Mascot, Pill } from '../components/ui'
 import StarScore from '../components/StarScore'
 
 const STAGES = [
@@ -42,17 +42,12 @@ export default function SkillCheck() {
 
   return (
     <>
-      <section className="dotted-bg relative overflow-hidden border-b-[4px] border-ink">
-        <Doodle kind="star" className="animate-twinkle absolute left-10 top-12 h-14 w-14" />
-        <Doodle
-          kind="bolt"
-          color="var(--color-mint-500)"
-          className="animate-float absolute right-16 top-20 h-12 w-12"
-        />
+      <section className="mesh grain relative overflow-hidden border-b border-line">
         <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-2">
           <div>
-            <Pill className="rotate-[-2deg] bg-grape-300 text-white">
-              <span aria-hidden="true">🧭</span> About 15 minutes
+            <Pill className="text-ink-soft">
+              <span className="h-2 w-2 rounded-full bg-grape-500" aria-hidden="true" />
+              About 15 minutes
             </Pill>
             <h1 className="mt-6 text-5xl font-extrabold leading-tight sm:text-6xl">
               The Skill Check
@@ -98,7 +93,7 @@ export default function SkillCheck() {
         />
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {STAGES.map((s, i) => (
-            <div key={s.label} className={`sticker-lg p-6 ${s.tone} ${i % 2 ? 'sm:translate-y-4' : ''}`}>
+            <div key={s.label} className={`sticker-lg border-transparent p-6 ${s.tone}`}>
               <span className="text-4xl" aria-hidden="true">{s.emoji}</span>
               <h3 className="mt-3 text-xl font-extrabold">{s.label}</h3>
               <p className="mt-2 font-bold text-ink/70">{s.body}</p>
@@ -107,7 +102,7 @@ export default function SkillCheck() {
         </div>
       </section>
 
-      <section className="border-y-[4px] border-ink bg-mint-100 py-20">
+      <section className="border-y border-line bg-canvas-deep py-24">
         <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-2">
           <div>
             <SectionHeading
@@ -129,7 +124,7 @@ export default function SkillCheck() {
           <div className="sticker-lg bg-white p-7">
             <div className="flex items-center justify-between">
               <h3 className="font-display text-xl font-extrabold">Math · your map</h3>
-              <span className="rounded-full border-[3px] border-ink bg-sunshine-300 px-3 py-1 text-sm font-bold">
+              <span className="rounded-full border border-line bg-sunshine-300 px-3 py-1 text-sm font-bold">
                 Updated today
               </span>
             </div>
@@ -140,7 +135,7 @@ export default function SkillCheck() {
                     <span className="font-bold">{s.name}</span>
                     <span className="text-sm font-bold text-ink-soft">{s.level}</span>
                   </div>
-                  <div className="mt-1.5 h-4 overflow-hidden rounded-full border-[3px] border-ink bg-white">
+                  <div className="mt-1.5 h-4 overflow-hidden rounded-full border border-line bg-white">
                     <div className={`h-full rounded-full ${s.tone}`} style={{ width: `${s.score}%` }} />
                   </div>
                 </div>
@@ -149,7 +144,7 @@ export default function SkillCheck() {
             <div className="sticker mt-6 bg-blueberry-100 p-4">
               <p className="font-display font-bold">Try this next</p>
               <p className="mt-1 text-ink-soft">
-                Measurement &amp; data is the gap. Three skills there would lift your whole maths
+                Measurement &amp; data is the gap. Three skills there would lift your whole math
                 score.
               </p>
             </div>

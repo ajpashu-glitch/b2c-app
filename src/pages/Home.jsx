@@ -43,7 +43,7 @@ const FEATURES = [
   },
   {
     title: 'Skill Check finds your level',
-    body: 'A short, no-pressure check that works out exactly where you are in maths and reading — then keeps itself up to date as you learn.',
+    body: 'A short, no-pressure check that works out exactly where you are in math and reading — then keeps itself up to date as you learn.',
     emoji: '🧭',
     tone: 'bg-mint-100',
   },
@@ -83,7 +83,7 @@ const VOICES = [
   },
   {
     quote:
-      'My son used to hide his maths homework. Now he shows me his trophy case. Same kid, completely different feeling about it.',
+      'My son used to hide his math homework. Now he shows me his trophy case. Same kid, completely different feeling about it.',
     name: 'Dev, parent of a 4th grader',
     tone: 'bg-mint-300',
     mascot: 'fox',
@@ -101,50 +101,52 @@ export default function Home() {
   return (
     <>
       {/* ---------------- Hero ---------------- */}
-      <section className="dotted-bg relative overflow-hidden border-b-[4px] border-ink">
+      <section className="mesh grain relative overflow-hidden border-b border-line">
         <Blobs />
-        <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:py-24">
-          <div className="animate-pop-in">
-            <Pill className="rotate-[-2deg] bg-mint-300">
-              <span aria-hidden="true">✨</span> Free to try — no card, no catch
+        <div className="relative mx-auto grid max-w-7xl items-center gap-14 px-4 py-20 sm:px-6 lg:grid-cols-[1.05fr_1fr] lg:py-28">
+          <div className="animate-rise">
+            <Pill className="text-ink-soft">
+              <span className="h-2 w-2 rounded-full bg-mint-500" aria-hidden="true" />
+              Free to try — no card, no catch
             </Pill>
 
-            <h1 className="mt-6 text-5xl font-extrabold leading-[1.05] sm:text-6xl lg:text-7xl">
+            <h1 className="mt-7 text-[3.25rem] leading-[0.98] sm:text-[4.25rem] lg:text-[5rem]">
               Learning that feels like{' '}
               <span className="relative inline-block">
-                <span className="relative z-10">leveling up</span>
+                <span className="accent relative z-10 text-blueberry-600">leveling up</span>
                 <svg
                   aria-hidden="true"
-                  viewBox="0 0 300 24"
-                  className="absolute -bottom-4 left-0 z-0 w-full sm:-bottom-5"
+                  viewBox="0 0 300 20"
+                  className="absolute -bottom-2 left-0 z-0 w-full sm:-bottom-3"
                   preserveAspectRatio="none"
                 >
                   <path
-                    d="M4 16c60-10 130-14 292-8"
+                    d="M4 13c60-7 130-10 292-6"
                     fill="none"
-                    stroke="var(--color-bubblegum-500)"
-                    strokeWidth="10"
+                    stroke="var(--color-sunshine-500)"
+                    strokeWidth="6"
                     strokeLinecap="round"
+                    opacity="0.9"
                   />
                 </svg>
               </span>
             </h1>
 
-            <p className="mt-7 max-w-xl text-xl text-ink-soft">
+            <p className="mt-8 max-w-xl text-xl leading-relaxed text-ink-soft">
               Math, reading, science, social studies and Spanish — 20,000+ bite-sized skills for
               Pre-K through 12. Answer a question, watch your Star Score grow, collect the trophy.
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-4">
+            <div className="mt-10 flex flex-wrap gap-4">
               <Button to="/join" tone="berry" size="lg">
-                Start practicing free <span aria-hidden="true">🚀</span>
+                Start practicing free <span aria-hidden="true">→</span>
               </Button>
               <Button to="/learn" tone="white" size="lg">
                 Browse the skills
               </Button>
             </div>
 
-            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm font-bold text-ink-soft">
+            <div className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-3 text-sm font-semibold text-ink-soft">
               <span className="flex items-center gap-2"><span aria-hidden="true">🛡️</span> Kid-safe &amp; ad-free</span>
               <span className="flex items-center gap-2"><span aria-hidden="true">📱</span> Works on any device</span>
               <span className="flex items-center gap-2"><span aria-hidden="true">👨‍👩‍👧</span> Up to 5 kids per family</span>
@@ -153,31 +155,29 @@ export default function Home() {
 
           {/* Hero art: mascot + floating stickers */}
           <div className="relative mx-auto w-full max-w-lg">
-            <div className="sticker-lg relative rotate-2 bg-blueberry-100 p-8">
-              <Doodle kind="star" className="animate-twinkle absolute -left-6 -top-6 h-14 w-14" />
+            <div className="sticker-lg relative bg-white/70 p-8 backdrop-blur-sm">
+              <Doodle kind="star" className="animate-twinkle absolute -left-6 -top-6 hidden h-14 w-14 sm:block" />
               <Doodle
                 kind="heart"
                 color="var(--color-bubblegum-500)"
-                className="animate-float absolute -right-5 top-10 h-12 w-12"
+                className="animate-float absolute -right-5 top-10 hidden h-12 w-12 sm:block"
               />
               <Doodle
                 kind="bolt"
                 color="var(--color-mint-500)"
-                className="animate-float-slow absolute -bottom-6 left-10 h-12 w-12"
+                className="animate-float-slow absolute -bottom-6 left-10 hidden h-12 w-12 sm:block"
               />
 
               <Mascot name="rocket" className="animate-float mx-auto h-56 w-56" />
 
-              <div className="sticker mt-4 -rotate-2 bg-white p-4">
-                <p className="font-display text-sm font-bold uppercase tracking-wide text-ink-soft">
-                  Today’s mission
-                </p>
-                <p className="font-display text-xl font-extrabold">Multiply by 6 🚀</p>
-                <div className="mt-3 h-4 overflow-hidden rounded-full border-[3px] border-ink bg-white">
-                  <div className="h-full w-[78%] rounded-full bg-mint-500" />
+              <div className="sticker mt-6 p-5">
+                <p className="eyebrow text-ink-faint">Today’s mission</p>
+                <p className="mt-1.5 font-display text-xl font-bold">Multiply by 6</p>
+                <div className="mt-4 h-2.5 overflow-hidden rounded-full bg-canvas-deep">
+                  <div className="h-full w-[78%] rounded-full bg-gradient-to-r from-mint-500 to-mint-300" />
                 </div>
-                <p className="mt-2 text-sm font-bold text-ink-soft">
-                  Star Score 78 — two more to go!
+                <p className="mt-2.5 text-sm font-semibold text-ink-soft">
+                  Star Score 78 — two more to go
                 </p>
               </div>
             </div>
@@ -186,13 +186,18 @@ export default function Home() {
       </section>
 
       {/* ---------------- Stats ---------------- */}
-      <section className="border-b-[4px] border-ink bg-grape-500">
-        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-4 px-4 py-10 sm:px-6 lg:grid-cols-4">
-          {STATS.map((s) => (
-            <div key={s.label} className="sticker bg-white px-4 py-5 text-center">
-              <span className="text-3xl" aria-hidden="true">{s.emoji}</span>
-              <p className="mt-1 font-display text-3xl font-extrabold sm:text-4xl">{s.value}</p>
-              <p className="text-sm font-bold text-ink-soft">{s.label}</p>
+      <section className="border-b border-line bg-ink text-white">
+        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-y-10 px-4 py-14 sm:px-6 lg:grid-cols-4 lg:gap-y-0">
+          {STATS.map((s, i) => (
+            <div
+              key={s.label}
+              className={`px-4 text-center lg:px-8 ${i > 0 ? 'lg:border-l lg:border-white/12' : ''}`}
+            >
+              <span className="text-2xl opacity-90" aria-hidden="true">{s.emoji}</span>
+              <p className="mt-2 whitespace-nowrap font-display text-[2rem] font-bold tracking-tight sm:text-[2.75rem]">
+                {s.value}
+              </p>
+              <p className="mt-1 text-sm font-medium text-white/55">{s.label}</p>
             </div>
           ))}
         </div>
@@ -213,12 +218,10 @@ export default function Home() {
               <Link
                 key={s.id}
                 to={`/learn/${s.id}`}
-                className={`sticker-lg sticker-hover group relative overflow-hidden p-7 ${t.bgSoft} ${
-                  i % 2 ? '-rotate-1' : 'rotate-1'
-                }`}
+                className={`sticker-lg sticker-hover group relative overflow-hidden p-7 ${t.bgSoft}`}
               >
                 <div
-                  className={`absolute -right-8 -top-8 h-28 w-28 rounded-full ${t.ring} opacity-60`}
+                  className={`absolute -right-10 -top-10 h-32 w-32 rounded-full ${t.ring} opacity-45 blur-2xl`}
                   aria-hidden="true"
                 />
                 <span className="relative text-5xl" aria-hidden="true">{s.emoji}</span>
@@ -226,7 +229,7 @@ export default function Home() {
                 <p className={`relative font-display font-bold ${t.text}`}>{s.tagline}</p>
                 <p className="relative mt-3 text-ink-soft">{s.blurb}</p>
                 <div className="relative mt-5 flex items-center justify-between">
-                  <span className="rounded-full border-[3px] border-ink bg-white px-3 py-1 text-sm font-bold">
+                  <span className="rounded-full border border-line bg-white px-3 py-1 text-sm font-bold">
                     {s.skillCount} skills
                   </span>
                   <span className="font-display font-bold group-hover:translate-x-1 transition-transform">
@@ -238,7 +241,7 @@ export default function Home() {
           })}
 
           {/* Grade quick-jump tile */}
-          <div className="sticker-lg rotate-1 bg-ink p-7 text-white">
+          <div className="sticker-lg bg-ink p-7 text-white">
             <h3 className="text-2xl font-extrabold">Jump to your grade</h3>
             <p className="mt-2 text-white/70">Straight to the skills your class is doing now.</p>
             <div className="mt-5 flex flex-wrap gap-2">
@@ -257,7 +260,7 @@ export default function Home() {
       </section>
 
       {/* ---------------- Try it ---------------- */}
-      <section className="border-y-[4px] border-ink bg-sunshine-100 py-20">
+      <section className="border-y border-line bg-canvas-deep py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <div>
@@ -274,7 +277,7 @@ export default function Home() {
                   ['🎯', 'The questions quietly get harder as you get better.'],
                 ].map(([emoji, text]) => (
                   <div key={text} className="flex items-start gap-3">
-                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-2xl border-[3px] border-ink bg-white text-lg">
+                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-2xl border border-line bg-white text-lg">
                       <span aria-hidden="true">{emoji}</span>
                     </span>
                     <p className="pt-1.5 font-bold text-ink-soft">{text}</p>
@@ -296,8 +299,8 @@ export default function Home() {
         />
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           {STEPS.map((s, i) => (
-            <div key={s.n} className={`sticker-lg relative p-7 ${s.color} ${i === 1 ? 'md:-translate-y-4' : ''}`}>
-              <span className="absolute -top-6 left-6 grid h-12 w-12 place-items-center rounded-2xl border-[3px] border-ink bg-white font-display text-2xl font-extrabold shadow-[0_4px_0_0_var(--color-ink)]">
+            <div key={s.n} className={`sticker-lg relative border-transparent p-7 ${s.color}`}>
+              <span className="absolute -top-6 left-6 grid h-12 w-12 place-items-center rounded-2xl border border-line bg-white font-display text-2xl font-extrabold shadow-soft">
                 {s.n}
               </span>
               <span className="mt-4 block text-4xl" aria-hidden="true">{s.emoji}</span>
@@ -309,7 +312,7 @@ export default function Home() {
       </section>
 
       {/* ---------------- Features ---------------- */}
-      <section className="border-y-[4px] border-ink bg-blueberry-100 py-20">
+      <section className="border-y border-line bg-canvas-deep py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <SectionHeading
             eyebrow="What makes it stick"
@@ -338,7 +341,7 @@ export default function Home() {
           {VOICES.map((v, i) => (
             <figure
               key={v.name}
-              className={`sticker-lg p-7 ${v.tone} ${i % 2 ? 'rotate-1' : '-rotate-1'}`}
+              className={`sticker-lg border-transparent p-7 ${v.tone}`}
             >
               <Mascot name={v.mascot} className="h-16 w-16" />
               <blockquote className="mt-4 font-display text-lg font-bold leading-snug">
@@ -351,7 +354,7 @@ export default function Home() {
       </section>
 
       {/* ---------------- Grown-ups strip ---------------- */}
-      <section className="border-y-[4px] border-ink bg-mint-100 py-20">
+      <section className="border-y border-line bg-canvas-deep py-24">
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-[1.2fr_1fr]">
           <div>
             <SectionHeading
@@ -370,7 +373,7 @@ export default function Home() {
                 'Works alongside school',
               ].map((t) => (
                 <li key={t} className="flex items-center gap-2 font-bold">
-                  <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full border-[3px] border-ink bg-mint-500 text-xs">
+                  <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full border border-line bg-mint-500 text-xs">
                     <span aria-hidden="true">✓</span>
                   </span>
                   {t}
@@ -387,7 +390,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="sticker-lg rotate-1 bg-white p-6">
+          <div className="sticker-lg bg-white p-6">
             <p className="font-display text-sm font-bold uppercase tracking-wide text-ink-soft">
               This week · Amara, Grade 4
             </p>
@@ -402,7 +405,7 @@ export default function Home() {
                   <span>{label}</span>
                   <span className="text-ink-soft">{val}</span>
                 </div>
-                <div className="mt-1.5 h-4 overflow-hidden rounded-full border-[3px] border-ink bg-white">
+                <div className="mt-1.5 h-4 overflow-hidden rounded-full border border-line bg-white">
                   <div className={`h-full rounded-full ${tone}`} style={{ width: `${val}%` }} />
                 </div>
               </div>
@@ -417,19 +420,7 @@ export default function Home() {
 
       {/* ---------------- Final CTA ---------------- */}
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
-        <div className="sticker-lg relative overflow-hidden bg-bubblegum-500 px-6 py-16 text-center text-white sm:px-12">
-          <Doodle kind="star" className="animate-twinkle absolute left-8 top-8 h-12 w-12" />
-          <Doodle
-            kind="circle"
-            color="var(--color-sunshine-500)"
-            className="animate-float absolute right-10 top-12 h-10 w-10"
-          />
-          <Doodle
-            kind="blob"
-            color="var(--color-mint-500)"
-            className="animate-float-slow absolute bottom-8 left-1/4 h-14 w-14"
-          />
-
+        <div className="sticker-lg grain relative overflow-hidden border-transparent bg-gradient-to-br from-blueberry-600 via-grape-500 to-bubblegum-500 px-6 py-20 text-center text-white shadow-float sm:px-12">
           <Mascot name="bot" className="animate-float mx-auto h-28 w-28" />
           <h2 className="mt-6 text-4xl font-extrabold sm:text-5xl">
             Ready when you are

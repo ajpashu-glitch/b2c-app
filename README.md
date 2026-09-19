@@ -4,8 +4,21 @@ A kid-friendly, modern reimagining of an IXL-style K–12 practice site.
 
 Same product shape as the original — five subjects, Pre-K through Grade 12, thousands of
 bite-sized skills, an adaptive diagnostic, a proficiency meter and an awards system — rebuilt
-around a playful visual language: chunky rounded "sticker" cards with hard offset shadows, a
-saturated pastel palette, rounded display type, hand-drawn doodles and floating SVG mascots.
+around a warmer, more contemporary visual language.
+
+## Design system
+
+- **Type.** [Outfit](https://fonts.google.com/specimen/Outfit) for display (tight tracking,
+  heavy weights), [Plus Jakarta Sans](https://fonts.google.com/specimen/Plus+Jakarta+Sans) for
+  body, and [Fraunces](https://fonts.google.com/specimen/Fraunces) italic as a serif accent on
+  a word or two inside a headline.
+- **Elevation.** Hairline borders plus layered, tinted shadows (`--shadow-soft` → `--shadow-float`)
+  instead of hard offset slabs. Solid buttons carry a shadow tinted with their own hue, so a
+  hover lift reads as light rather than a grey smudge.
+- **Color.** A warm off-white canvas (`#fbf8f3`) with richer, slightly desaturated accents, so
+  large fills stay calm and the accents do the work. Dark bands use deep ink, not saturated purple.
+- **Texture.** A wide, low-opacity mesh wash on hero sections plus a fine SVG grain, which keeps
+  big flat areas from looking like plastic.
 
 ## What's here
 

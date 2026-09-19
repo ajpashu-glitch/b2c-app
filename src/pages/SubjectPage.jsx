@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { Link, Navigate, useParams, useSearchParams } from 'react-router-dom'
-import { Button, Doodle, Mascot } from '../components/ui'
+import { Button, Mascot } from '../components/ui'
 import StarScore from '../components/StarScore'
 import { getSubject, getSkills, gradesForSubject, THEME } from '../data/curriculum'
 
@@ -41,9 +41,7 @@ export default function SubjectPage() {
   return (
     <>
       {/* Subject hero */}
-      <section className={`relative overflow-hidden border-b-[4px] border-ink ${t.bgSoft}`}>
-        <Doodle kind="blob" color="var(--color-sunshine-500)" className="animate-float-slow absolute bottom-6 right-24 hidden h-16 w-16 opacity-70 lg:block" />
-        <Doodle kind="star" className="animate-twinkle absolute right-10 top-10 h-14 w-14" />
+      <section className={`mesh grain relative overflow-hidden border-b border-line ${t.bgSoft}`}>
 
         <div className="relative mx-auto max-w-7xl px-4 py-14 sm:px-6">
           <Link to="/learn" className="font-display font-bold text-ink-soft hover:text-ink">
@@ -51,14 +49,14 @@ export default function SubjectPage() {
           </Link>
 
           <div className="mt-5 flex flex-wrap items-center gap-5">
-            <span className="grid h-20 w-20 place-items-center rounded-3xl border-[4px] border-ink bg-white text-4xl shadow-[0_6px_0_0_var(--color-ink)]">
+            <span className="grid h-20 w-20 place-items-center rounded-3xl border border-line bg-white text-4xl shadow-lift">
               <span aria-hidden="true">{subject.emoji}</span>
             </span>
             <div>
               <h1 className="text-4xl font-extrabold sm:text-5xl">{subject.name}</h1>
               <p className={`font-display text-xl font-bold ${t.text}`}>{subject.tagline}</p>
             </div>
-            <span className="ml-auto rounded-full border-[3px] border-ink bg-white px-4 py-2 font-display font-bold">
+            <span className="ml-auto rounded-full border border-line bg-white px-4 py-2 font-display font-bold">
               {subject.skillCount} skills
             </span>
           </div>
@@ -68,7 +66,7 @@ export default function SubjectPage() {
       </section>
 
       {/* Grade picker */}
-      <section className="sticky top-[73px] z-30 border-b-[3px] border-ink bg-cream/95 backdrop-blur">
+      <section className="sticky top-[73px] z-30 border-b border-line bg-canvas/95 backdrop-blur">
         <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6">
           <div className="flex flex-wrap items-center gap-3">
             <span className="font-display font-bold">Grade:</span>
@@ -81,9 +79,9 @@ export default function SubjectPage() {
                     type="button"
                     onClick={() => pickGrade(g.id)}
                     aria-pressed={active}
-                    className={`rounded-xl border-[3px] border-ink px-3 py-1.5 font-display font-bold transition-transform active:translate-y-[2px] ${
+                    className={`rounded-xl border border-line px-3 py-1.5 font-display font-bold transition-transform active:translate-y-[2px] ${
                       active
-                        ? `${t.bg} text-white shadow-[0_4px_0_0_var(--color-ink)]`
+                        ? `${t.bg} text-white shadow-soft`
                         : 'bg-white hover:bg-sunshine-100'
                     }`}
                   >
@@ -99,7 +97,7 @@ export default function SubjectPage() {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search skills…"
-                className="w-48 rounded-full border-[3px] border-ink bg-white px-4 py-2 font-bold placeholder:font-normal placeholder:text-ink-soft/60 sm:w-64"
+                className="w-48 rounded-full border border-line bg-white px-4 py-2 font-bold placeholder:font-normal placeholder:text-ink-soft/60 sm:w-64"
               />
             </label>
           </div>
@@ -148,7 +146,7 @@ export default function SubjectPage() {
                   <div className="sticker sticker-hover flex h-full flex-col gap-3 p-5">
                     <div className="flex items-start gap-3">
                       <span
-                        className={`grid h-11 w-11 shrink-0 place-items-center rounded-2xl border-[3px] border-ink font-display font-extrabold ${
+                        className={`grid h-11 w-11 shrink-0 place-items-center rounded-2xl border border-line font-display font-extrabold ${
                           done ? 'bg-mint-500' : t.bgSoft
                         }`}
                       >
@@ -166,7 +164,7 @@ export default function SubjectPage() {
                       </Link>
                     </div>
                     <div className="flex items-center gap-3 pl-14">
-                      <div className="h-3 min-w-0 flex-1 overflow-hidden rounded-full border-2 border-ink bg-white">
+                      <div className="h-3 min-w-0 flex-1 overflow-hidden rounded-full border border-line-strong bg-white">
                         <div
                           className={`h-full rounded-full ${
                             score >= 90 ? 'bg-mint-500' : score >= 60 ? 'bg-sunshine-500' : 'bg-tangerine-500'

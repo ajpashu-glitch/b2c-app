@@ -34,11 +34,11 @@ const COLUMNS = [
 
 export default function Footer() {
   return (
-    <footer className="mt-24 border-t-[4px] border-ink bg-blueberry-500 text-white">
+    <footer className="mt-24 border-t border-line bg-blueberry-500 text-white">
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-2">
-            <div className="rounded-3xl bg-white px-4 py-3 inline-block border-[3px] border-ink shadow-[0_5px_0_0_var(--color-ink)]">
+            <div className="rounded-3xl bg-white px-4 py-3 inline-block border border-line shadow-soft">
               <Logo />
             </div>
             <p className="mt-5 max-w-sm text-blueberry-50">
@@ -49,7 +49,7 @@ export default function Footer() {
               {['🌟', '🎨', '🧪', '🗺️', '🎧'].map((e) => (
                 <span
                   key={e}
-                  className="grid h-10 w-10 place-items-center rounded-2xl border-[3px] border-ink bg-white text-lg"
+                  className="grid h-10 w-10 place-items-center rounded-2xl border border-line bg-white text-lg"
                 >
                   {e}
                 </span>

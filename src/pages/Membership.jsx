@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Button, SectionHeading, Doodle, Mascot } from '../components/ui'
+import { Button, SectionHeading, Mascot } from '../components/ui'
 
 const PLANS = [
   {
@@ -93,8 +93,7 @@ export default function Membership() {
 
   return (
     <>
-      <section className="dotted-bg relative overflow-hidden border-b-[4px] border-ink">
-        <Doodle kind="blob" color="var(--color-mint-500)" className="animate-float-slow absolute left-8 top-16 hidden h-16 w-16 lg:block" />
+      <section className="mesh grain relative overflow-hidden border-b border-line">
         <div className="relative mx-auto max-w-7xl px-4 py-16 text-center sm:px-6">
           <h1 className="text-5xl font-extrabold sm:text-6xl">Simple plans, no surprises</h1>
           <p className="mx-auto mt-5 max-w-2xl text-xl text-ink-soft">
@@ -102,7 +101,7 @@ export default function Membership() {
             stayed because it works.
           </p>
 
-          <div className="mt-8 inline-flex items-center gap-2 rounded-full border-[3px] border-ink bg-white p-1.5 shadow-[0_5px_0_0_var(--color-ink)]">
+          <div className="mt-8 inline-flex items-center gap-2 rounded-full border border-line bg-white p-1.5 shadow-soft">
             {[
               { id: false, label: 'Monthly' },
               { id: true, label: 'Yearly · save 30%' },
@@ -113,7 +112,7 @@ export default function Membership() {
                 onClick={() => setYearly(opt.id)}
                 aria-pressed={yearly === opt.id}
                 className={`rounded-full px-5 py-2 font-display font-bold transition-colors ${
-                  yearly === opt.id ? 'bg-ink text-white' : 'text-ink hover:bg-cream'
+                  yearly === opt.id ? 'bg-ink text-white' : 'text-ink hover:bg-canvas'
                 }`}
               >
                 {opt.label}
@@ -131,7 +130,7 @@ export default function Membership() {
               className={`sticker-lg relative p-8 ${p.tone} ${p.featured ? 'lg:-translate-y-4' : ''}`}
             >
               {p.featured && (
-                <span className="absolute -top-5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full border-[3px] border-ink bg-bubblegum-500 px-4 py-1.5 font-display text-sm font-bold text-white shadow-[0_4px_0_0_var(--color-ink)]">
+                <span className="absolute -top-5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full border border-line bg-bubblegum-500 px-4 py-1.5 font-display text-sm font-bold text-white shadow-soft">
                   ⭐ Best value
                 </span>
               )}
@@ -166,7 +165,7 @@ export default function Membership() {
               <ul className="mt-7 space-y-2.5">
                 {p.features.map((f) => (
                   <li key={f} className="flex items-start gap-2 font-bold">
-                    <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full border-2 border-ink bg-mint-500 text-xs">
+                    <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full border border-line-strong bg-mint-500 text-xs">
                       <span aria-hidden="true">✓</span>
                     </span>
                     {f}
@@ -174,7 +173,7 @@ export default function Membership() {
                 ))}
                 {p.missing.map((f) => (
                   <li key={f} className="flex items-start gap-2 font-bold text-ink-soft/60">
-                    <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full border-2 border-ink/30 bg-white text-xs">
+                    <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full border border-line-strong/30 bg-white text-xs">
                       <span aria-hidden="true">–</span>
                     </span>
                     {f}
@@ -191,7 +190,7 @@ export default function Membership() {
         </p>
       </section>
 
-      <section className="border-y-[4px] border-ink bg-blueberry-100 py-20">
+      <section className="border-y border-line bg-canvas-deep py-24">
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
           <SectionHeading eyebrow="Questions" title="Things grown-ups ask" />
           <ul className="mt-10 space-y-4">
@@ -203,11 +202,11 @@ export default function Membership() {
                     type="button"
                     onClick={() => setOpen(isOpen ? -1 : i)}
                     aria-expanded={isOpen}
-                    className="flex w-full items-center justify-between gap-4 p-5 text-left font-display text-lg font-bold hover:bg-cream"
+                    className="flex w-full items-center justify-between gap-4 p-5 text-left font-display text-lg font-bold hover:bg-canvas"
                   >
                     {item.q}
                     <span
-                      className={`grid h-8 w-8 shrink-0 place-items-center rounded-full border-[3px] border-ink bg-sunshine-500 transition-transform ${
+                      className={`grid h-8 w-8 shrink-0 place-items-center rounded-full border border-line bg-sunshine-500 transition-transform ${
                         isOpen ? 'rotate-45' : ''
                       }`}
                       aria-hidden="true"
@@ -216,7 +215,7 @@ export default function Membership() {
                     </span>
                   </button>
                   {isOpen && (
-                    <p className="animate-pop-in border-t-[3px] border-dashed border-ink/15 p-5 pt-4 text-ink-soft">
+                    <p className="animate-pop-in border-t border-line p-5 pt-4 text-ink-soft">
                       {item.a}
                     </p>
                   )}

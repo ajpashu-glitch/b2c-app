@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Button, SectionHeading, Doodle, Mascot } from '../components/ui'
+import { Button, SectionHeading, Mascot } from '../components/ui'
 
 const TABS = [
   {
@@ -52,8 +52,7 @@ export default function GrownUps() {
 
   return (
     <>
-      <section className="dotted-bg relative overflow-hidden border-b-[4px] border-ink">
-        <Doodle kind="star" className="animate-twinkle absolute right-14 top-12 h-14 w-14" />
+      <section className="mesh grain relative overflow-hidden border-b border-line">
         <div className="relative mx-auto max-w-7xl px-4 py-16 text-center sm:px-6">
           <h1 className="text-5xl font-extrabold sm:text-6xl">The grown-up side</h1>
           <p className="mx-auto mt-5 max-w-2xl text-xl text-ink-soft">
@@ -72,7 +71,7 @@ export default function GrownUps() {
               onClick={() => setActive(t.id)}
               aria-pressed={active === t.id}
               className={`sticker sticker-press flex items-center gap-2 px-5 py-3 font-display text-lg font-bold ${
-                active === t.id ? 'bg-sunshine-500' : 'bg-white hover:bg-cream'
+                active === t.id ? 'bg-sunshine-500' : 'bg-white hover:bg-canvas'
               }`}
             >
               <span aria-hidden="true">{t.emoji}</span> {t.label}
@@ -80,14 +79,14 @@ export default function GrownUps() {
           ))}
         </div>
 
-        <div className={`sticker-lg animate-pop-in mt-10 grid gap-10 p-8 sm:p-12 lg:grid-cols-2 ${tab.tone}`}>
+        <div className={`sticker-lg animate-pop-in mt-10 grid gap-10 border-transparent p-8 sm:p-12 lg:grid-cols-2 ${tab.tone}`}>
           <div>
             <h2 className="text-3xl font-extrabold sm:text-4xl">{tab.headline}</h2>
             <p className="mt-4 text-lg text-ink-soft">{tab.body}</p>
             <ul className="mt-8 space-y-4">
               {tab.points.map(([emoji, text]) => (
                 <li key={text} className="flex items-start gap-3">
-                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl border-[3px] border-ink bg-white text-lg shadow-[0_4px_0_0_var(--color-ink)]">
+                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl border border-line bg-white text-lg shadow-soft">
                     <span aria-hidden="true">{emoji}</span>
                   </span>
                   <p className="pt-2 font-bold">{text}</p>
@@ -108,7 +107,7 @@ export default function GrownUps() {
           <div className="sticker bg-white p-6">
             <div className="flex items-center justify-between">
               <p className="font-display text-lg font-extrabold">This week</p>
-              <span className="rounded-full border-[3px] border-ink bg-mint-300 px-3 py-1 text-sm font-bold">
+              <span className="rounded-full border border-line bg-mint-300 px-3 py-1 text-sm font-bold">
                 On track
               </span>
             </div>
@@ -119,7 +118,7 @@ export default function GrownUps() {
                 ['4', 'skills mastered'],
                 ['1h 20m', 'practicing'],
               ].map(([v, l]) => (
-                <div key={l} className="rounded-2xl border-[3px] border-ink bg-cream p-3">
+                <div key={l} className="rounded-2xl border border-line bg-canvas p-3">
                   <p className="font-display text-2xl font-extrabold">{v}</p>
                   <p className="text-xs font-bold text-ink-soft">{l}</p>
                 </div>
@@ -141,7 +140,7 @@ export default function GrownUps() {
                     <span>{label}</span>
                     <span className="text-ink-soft">{val}/100</span>
                   </div>
-                  <div className="mt-1 h-3.5 overflow-hidden rounded-full border-2 border-ink bg-white">
+                  <div className="mt-1 h-3.5 overflow-hidden rounded-full border border-line-strong bg-white">
                     <div className={`h-full rounded-full ${tone}`} style={{ width: `${val}%` }} />
                   </div>
                 </div>
@@ -156,13 +155,13 @@ export default function GrownUps() {
         </div>
       </section>
 
-      <section className="border-y-[4px] border-ink bg-grape-500 py-20 text-white">
+      <section className="border-y border-line bg-ink py-24 text-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <SectionHeading
             eyebrow="Safety first"
             title="What we do with kids’ data"
             subtitle="The short version: as little as possible, and never for advertising."
-            className="[&_h2]:text-white [&_p]:text-white/80"
+            className="[&_.eyebrow]:text-grape-300 [&_h2]:text-white [&_p]:text-white/80"
           />
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {[

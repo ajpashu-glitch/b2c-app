@@ -70,11 +70,11 @@ export default function PracticeDemo() {
       <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-sunshine-300/50" aria-hidden="true" />
 
       <div className="relative flex flex-wrap items-center gap-3">
-        <span className="rounded-full border-[3px] border-ink bg-mint-300 px-3 py-1 font-display text-sm font-bold">
+        <span className="rounded-full border border-line bg-mint-300 px-3 py-1 font-display text-sm font-bold">
           Question {index + 1} of {QUESTIONS.length}
         </span>
         {streak >= 2 && (
-          <span className="animate-wiggle rounded-full border-[3px] border-ink bg-tangerine-300 px-3 py-1 font-display text-sm font-bold">
+          <span className="animate-wiggle rounded-full border border-line bg-tangerine-300 px-3 py-1 font-display text-sm font-bold">
             🔥 {streak} in a row!
           </span>
         )}
@@ -92,7 +92,7 @@ export default function PracticeDemo() {
           const chosen = picked === opt
           const right = answered && opt === q.answer
           const wrong = chosen && !isCorrect
-          let tone = 'bg-white hover:bg-cream'
+          let tone = 'bg-white hover:bg-canvas'
           if (right) tone = 'bg-mint-300'
           if (wrong) tone = 'bg-bubblegum-300'
           return (
@@ -114,7 +114,7 @@ export default function PracticeDemo() {
       <div aria-live="polite" className="relative">
         {answered && (
           <div
-            className={`animate-pop-in mt-5 flex items-start gap-3 rounded-3xl border-[3px] border-ink p-4 ${
+            className={`animate-pop-in mt-5 flex items-start gap-3 rounded-3xl border border-line p-4 ${
               isCorrect ? 'bg-mint-100' : 'bg-sunshine-100'
             }`}
           >
@@ -129,7 +129,7 @@ export default function PracticeDemo() {
         )}
       </div>
 
-      <div className="relative mt-6 flex flex-col gap-4 border-t-[3px] border-dashed border-ink/20 pt-5 sm:flex-row sm:items-end">
+      <div className="relative mt-6 flex flex-col gap-4 border-t border-line pt-5 sm:flex-row sm:items-end">
         <div className="flex-1">
           <StarScore value={score} />
         </div>

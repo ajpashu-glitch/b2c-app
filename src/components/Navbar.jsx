@@ -14,7 +14,7 @@ const LINKS = [
 export function Logo({ className = '' }) {
   return (
     <Link to="/" className={`group inline-flex items-center gap-2 ${className}`} aria-label="Skillio home">
-      <span className="grid h-11 w-11 place-items-center rounded-2xl border-[3px] border-ink bg-sunshine-500 shadow-[0_4px_0_0_var(--color-ink)] transition-transform group-hover:-rotate-6">
+      <span className="grid h-11 w-11 place-items-center rounded-2xl border border-line bg-sunshine-500 shadow-soft transition-transform group-hover:-rotate-6">
         <span className="text-xl" aria-hidden="true">
           🚀
         </span>
@@ -37,7 +37,7 @@ export default function Navbar() {
   }, [location.pathname])
 
   return (
-    <header className="sticky top-0 z-50 border-b-[3px] border-ink bg-cream/95 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-line bg-canvas/95 backdrop-blur">
       <nav className="mx-auto flex max-w-7xl items-center gap-4 px-4 py-3 sm:px-6">
         <Logo />
 
@@ -62,7 +62,7 @@ export default function Navbar() {
                     <li key={s.id}>
                       <Link
                         to={`/learn/${s.id}`}
-                        className="flex items-center gap-3 rounded-2xl px-3 py-2.5 font-bold hover:bg-cream"
+                        className="flex items-center gap-3 rounded-2xl px-3 py-2.5 font-bold hover:bg-canvas"
                       >
                         <span className="text-2xl" aria-hidden="true">
                           {s.emoji}
@@ -87,7 +87,7 @@ export default function Navbar() {
               to={l.to}
               className={({ isActive }) =>
                 `rounded-full px-4 py-2 font-display font-bold hover:bg-white ${
-                  isActive ? 'bg-white shadow-[0_3px_0_0_var(--color-ink)] border-[3px] border-ink' : ''
+                  isActive ? 'bg-white shadow-soft border border-line' : ''
                 }`
               }
             >
@@ -107,7 +107,7 @@ export default function Navbar() {
 
         <button
           type="button"
-          className="ml-auto grid h-11 w-11 place-items-center rounded-2xl border-[3px] border-ink bg-white shadow-[0_4px_0_0_var(--color-ink)] lg:hidden"
+          className="ml-auto grid h-11 w-11 place-items-center rounded-2xl border border-line bg-white shadow-soft lg:hidden"
           aria-expanded={open}
           aria-label="Toggle menu"
           onClick={() => setOpen((v) => !v)}
@@ -119,12 +119,12 @@ export default function Navbar() {
       </nav>
 
       {open && (
-        <div className="animate-pop-in border-t-[3px] border-ink bg-white px-4 py-4 lg:hidden">
+        <div className="animate-pop-in border-t border-line bg-white px-4 py-4 lg:hidden">
           <p className="mb-2 font-display text-sm font-bold uppercase text-ink-soft">Subjects</p>
           <ul className="mb-4 grid grid-cols-1 gap-1 sm:grid-cols-2">
             {SUBJECTS.map((s) => (
               <li key={s.id}>
-                <Link to={`/learn/${s.id}`} className="flex items-center gap-2 rounded-2xl px-3 py-2 font-bold hover:bg-cream">
+                <Link to={`/learn/${s.id}`} className="flex items-center gap-2 rounded-2xl px-3 py-2 font-bold hover:bg-canvas">
                   <span aria-hidden="true">{s.emoji}</span> {s.name}
                 </Link>
               </li>
@@ -133,7 +133,7 @@ export default function Navbar() {
           <ul className="grid gap-1">
             {LINKS.map((l) => (
               <li key={l.to}>
-                <NavLink to={l.to} className="block rounded-2xl px-3 py-2 font-display font-bold hover:bg-cream">
+                <NavLink to={l.to} className="block rounded-2xl px-3 py-2 font-display font-bold hover:bg-canvas">
                   {l.label}
                 </NavLink>
               </li>

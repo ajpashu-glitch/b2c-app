@@ -1,4 +1,4 @@
-import { SectionHeading, Button, Doodle, Mascot } from '../components/ui'
+import { SectionHeading, Button, Mascot } from '../components/ui'
 
 const TROPHIES = [
   { name: 'First Steps', hint: 'Finish your very first skill', emoji: '👟', tone: 'bg-mint-300', earned: true },
@@ -26,13 +26,7 @@ export default function Awards() {
 
   return (
     <>
-      <section className="dotted-bg relative overflow-hidden border-b-[4px] border-ink">
-        <Doodle kind="star" className="animate-twinkle absolute left-12 top-10 h-16 w-16" />
-        <Doodle
-          kind="heart"
-          color="var(--color-bubblegum-500)"
-          className="animate-float absolute right-12 top-24 h-12 w-12"
-        />
+      <section className="mesh grain relative overflow-hidden border-b border-line">
         <div className="relative mx-auto max-w-7xl px-4 py-16 text-center sm:px-6">
           <Mascot name="bot" className="animate-float mx-auto h-28 w-28" />
           <h1 className="mt-6 text-5xl font-extrabold sm:text-6xl">Your trophy case</h1>
@@ -40,7 +34,7 @@ export default function Awards() {
             Awards are for effort, not just brilliance. Showing up, sticking with a hard skill and
             coming back after a wobble all earn you something.
           </p>
-          <div className="mt-8 inline-flex items-center gap-3 rounded-full border-[3px] border-ink bg-white px-6 py-3 font-display text-lg font-bold shadow-[0_5px_0_0_var(--color-ink)]">
+          <div className="mt-8 inline-flex items-center gap-3 rounded-full border border-line bg-white px-6 py-3 font-display text-lg font-bold shadow-soft">
             <span aria-hidden="true">🏆</span> {earned} of {TROPHIES.length} unlocked
           </div>
         </div>
@@ -53,8 +47,8 @@ export default function Awards() {
             <li
               key={t.name}
               className={`sticker sticker-hover p-6 text-center ${
-                t.earned ? t.tone : 'bg-white'
-              } ${i % 3 === 0 ? 'rotate-1' : i % 3 === 1 ? '-rotate-1' : ''}`}
+                t.earned ? `${t.tone} border-transparent` : 'bg-white'
+              }`}
             >
               <span
                 className={`block text-5xl ${t.earned ? '' : 'opacity-25 grayscale'}`}
@@ -65,8 +59,8 @@ export default function Awards() {
               <h3 className="mt-3 text-lg font-extrabold">{t.name}</h3>
               <p className="mt-1 text-sm font-bold text-ink/60">{t.hint}</p>
               <span
-                className={`mt-4 inline-block rounded-full border-2 border-ink px-3 py-1 text-xs font-bold ${
-                  t.earned ? 'bg-white' : 'bg-cream text-ink-soft'
+                className={`mt-4 inline-block rounded-full border border-line-strong px-3 py-1 text-xs font-bold ${
+                  t.earned ? 'bg-white' : 'bg-canvas text-ink-soft'
                 }`}
               >
                 {t.earned ? 'Unlocked' : 'Locked'}
@@ -76,7 +70,7 @@ export default function Awards() {
         </ul>
       </section>
 
-      <section className="border-y-[4px] border-ink bg-sunshine-100 py-20">
+      <section className="border-y border-line bg-canvas-deep py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <SectionHeading
             eyebrow="Certificates"
@@ -89,7 +83,7 @@ export default function Awards() {
                 key={c.title}
                 className={`sticker-lg p-8 text-center ${c.tone} ${i === 1 ? 'md:-translate-y-4' : ''}`}
               >
-                <div className="rounded-2xl border-[3px] border-dashed border-ink/40 p-6">
+                <div className="rounded-2xl border border-dashed border-ink/25 p-6">
                   <p className="font-display text-sm font-bold uppercase tracking-widest text-ink-soft">
                     Certificate of achievement
                   </p>

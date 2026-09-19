@@ -1,27 +1,37 @@
 import { Link } from 'react-router-dom'
 
 const BASE =
-  'inline-flex items-center justify-center gap-2 font-display font-bold rounded-full border-3 border-ink transition-transform duration-150 select-none'
+  'group/btn inline-flex items-center justify-center gap-2 font-display font-semibold rounded-full ' +
+  'transition-[transform,box-shadow,background-color] duration-300 ease-out select-none ' +
+  'hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]'
 
 const SIZES = {
-  sm: 'text-sm px-4 py-2 border-[3px]',
-  md: 'text-base px-6 py-3 border-[3px]',
-  lg: 'text-lg px-8 py-4 border-[3px]',
+  sm: 'text-sm px-5 py-2.5',
+  md: 'text-[0.95rem] px-6 py-3',
+  lg: 'text-lg px-8 py-4',
 }
 
+/* Solid fills carry a shadow tinted with their own hue, so the lift reads as light
+   rather than a grey smudge. */
 const TONES = {
-  primary: 'bg-sunshine-500 text-ink hover:bg-sunshine-300',
-  grape: 'bg-grape-500 text-white hover:bg-grape-600',
-  berry: 'bg-bubblegum-500 text-white hover:bg-bubblegum-600',
-  mint: 'bg-mint-500 text-ink hover:bg-mint-300',
-  blue: 'bg-blueberry-500 text-white hover:bg-blueberry-600',
-  white: 'bg-white text-ink hover:bg-cream',
-  ghost: 'bg-transparent text-ink border-transparent hover:bg-white/60 shadow-none',
+  primary:
+    'bg-sunshine-500 text-ink shadow-[0_6px_20px_-6px_rgba(255,182,39,0.65)] hover:bg-sunshine-300 hover:shadow-[0_12px_28px_-8px_rgba(255,182,39,0.75)]',
+  grape:
+    'bg-grape-500 text-white shadow-[0_6px_20px_-6px_rgba(157,92,255,0.6)] hover:bg-grape-600 hover:shadow-[0_12px_28px_-8px_rgba(157,92,255,0.7)]',
+  berry:
+    'bg-bubblegum-500 text-white shadow-[0_6px_20px_-6px_rgba(249,93,125,0.6)] hover:bg-bubblegum-600 hover:shadow-[0_12px_28px_-8px_rgba(249,93,125,0.7)]',
+  mint:
+    'bg-mint-500 text-white shadow-[0_6px_20px_-6px_rgba(23,199,154,0.6)] hover:bg-mint-600 hover:shadow-[0_12px_28px_-8px_rgba(23,199,154,0.7)]',
+  blue:
+    'bg-blueberry-500 text-white shadow-[0_6px_20px_-6px_rgba(99,96,232,0.6)] hover:bg-blueberry-600 hover:shadow-[0_12px_28px_-8px_rgba(99,96,232,0.7)]',
+  ink: 'bg-ink text-white shadow-lift hover:bg-[#241f42]',
+  white:
+    'bg-white text-ink border border-line shadow-soft hover:border-line-strong hover:shadow-lift',
+  ghost: 'bg-transparent text-ink hover:bg-white/70',
 }
 
 function classesFor(tone, size, extra) {
-  const shadow = tone === 'ghost' ? '' : 'shadow-[0_5px_0_0_var(--color-ink)] active:translate-y-[4px] active:shadow-[0_1px_0_0_var(--color-ink)]'
-  return [BASE, SIZES[size], TONES[tone], shadow, extra].filter(Boolean).join(' ')
+  return [BASE, SIZES[size], TONES[tone], extra].filter(Boolean).join(' ')
 }
 
 export function Button({ tone = 'primary', size = 'md', to, href, className, children, ...rest }) {
@@ -50,7 +60,7 @@ export function Button({ tone = 'primary', size = 'md', to, href, className, chi
 export function Pill({ children, className = '' }) {
   return (
     <span
-      className={`inline-flex items-center gap-2 rounded-full border-[3px] border-ink bg-white px-4 py-1.5 text-sm font-bold ${className}`}
+      className={`inline-flex items-center gap-2 rounded-full border border-line bg-white px-4 py-1.5 text-sm font-bold ${className}`}
     >
       {children}
     </span>
@@ -62,13 +72,20 @@ export function SectionHeading({ eyebrow, title, subtitle, align = 'center', cla
   return (
     <div className={`flex flex-col ${alignment} max-w-3xl ${className}`}>
       {eyebrow && (
-        <span className="mb-3 inline-block rotate-[-2deg] rounded-full border-[3px] border-ink bg-sunshine-300 px-4 py-1 font-display text-sm font-bold uppercase tracking-wide">
+        <span className="eyebrow mb-4 inline-flex items-center gap-2 text-blueberry-600">
+          <span className="h-1.5 w-1.5 rounded-full bg-blueberry-500" aria-hidden="true" />
           {eyebrow}
         </span>
       )}
-      <h2 className="text-3xl font-extrabold leading-tight sm:text-4xl md:text-5xl">{title}</h2>
+      <h2 className="text-[2rem] font-bold leading-[1.08] sm:text-4xl md:text-[3.25rem]">{title}</h2>
       {subtitle && (
-        <p className={`mt-4 text-lg text-ink-soft ${align === 'left' ? '' : 'mx-auto'}`}>{subtitle}</p>
+        <p
+          className={`mt-5 text-lg leading-relaxed text-ink-soft sm:text-xl ${
+            align === 'left' ? '' : 'mx-auto'
+          }`}
+        >
+          {subtitle}
+        </p>
       )}
     </div>
   )
@@ -78,9 +95,9 @@ export function SectionHeading({ eyebrow, title, subtitle, align = 'center', cla
 export function Blobs({ className = '' }) {
   return (
     <div aria-hidden="true" className={`pointer-events-none absolute inset-0 overflow-hidden ${className}`}>
-      <div className="animate-float-slow absolute -left-16 top-10 h-56 w-56 rounded-full bg-bubblegum-300/40 blur-2xl" />
-      <div className="animate-float absolute right-0 top-32 h-64 w-64 rounded-full bg-sunshine-300/50 blur-2xl" />
-      <div className="animate-float-slow absolute bottom-0 left-1/3 h-48 w-48 rounded-full bg-mint-300/40 blur-2xl" />
+      <div className="animate-float-slow absolute -left-24 top-0 h-80 w-80 rounded-full bg-bubblegum-300/25 blur-[90px]" />
+      <div className="animate-float absolute -right-10 top-24 h-96 w-96 rounded-full bg-sunshine-300/30 blur-[100px]" />
+      <div className="animate-float-slow absolute -bottom-16 left-1/3 h-72 w-72 rounded-full bg-mint-300/25 blur-[90px]" />
     </div>
   )
 }
@@ -107,7 +124,8 @@ export function Doodle({ kind = 'star', className = '', color = 'var(--color-sun
       className={className}
       fill={color}
       stroke="var(--color-ink)"
-      strokeWidth="3"
+      strokeOpacity="0.14"
+      strokeWidth="1.5"
       strokeLinejoin="round"
     >
       {shapes[kind]}
@@ -144,7 +162,7 @@ export function Mascot({ name = 'rocket', className = '' }) {
         <circle cx="48" cy="54" r="6" fill="var(--color-ink)" />
         <circle cx="72" cy="54" r="6" fill="var(--color-ink)" />
         <path d="M60 62l-7 9h14z" fill="var(--color-sunshine-500)" />
-        <path d="M30 20l14 12M90 20L76 32" stroke="var(--color-ink)" strokeWidth="5" strokeLinecap="round" />
+        <path d="M30 20l14 12M90 20L76 32" stroke="var(--color-ink)" strokeWidth="3" strokeLinecap="round" />
       </g>
     ),
     fox: (
@@ -165,7 +183,7 @@ export function Mascot({ name = 'rocket', className = '' }) {
     bot: (
       <g>
         <ellipse cx="60" cy="106" rx="26" ry="8" fill="var(--color-ink)" opacity=".15" />
-        <path d="M60 10v14" stroke="var(--color-ink)" strokeWidth="5" strokeLinecap="round" />
+        <path d="M60 10v14" stroke="var(--color-ink)" strokeWidth="3" strokeLinecap="round" />
         <circle cx="60" cy="10" r="7" fill="var(--color-sunshine-500)" />
         <rect x="24" y="26" width="72" height="56" rx="20" fill="var(--color-mint-500)" />
         <rect x="38" y="44" width="44" height="22" rx="11" fill="var(--color-ink)" />
@@ -182,8 +200,10 @@ export function Mascot({ name = 'rocket', className = '' }) {
       aria-label={`${name} mascot`}
       className={className}
       stroke="var(--color-ink)"
-      strokeWidth="4"
+      strokeOpacity="0.9"
+      strokeWidth="2.5"
       strokeLinejoin="round"
+      strokeLinecap="round"
     >
       {faces[name]}
     </svg>

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Button, Doodle, Mascot } from '../components/ui'
+import { Button, Mascot } from '../components/ui'
 
 const AVATARS = ['🚀', '🦊', '🦉', '🐙', '🦄', '🐝', '🐳', '🦖']
 
@@ -15,13 +15,7 @@ export default function Auth({ mode }) {
   }
 
   return (
-    <section className="dotted-bg relative overflow-hidden">
-      <Doodle kind="star" className="animate-twinkle absolute left-10 top-16 h-14 w-14" />
-      <Doodle
-        kind="blob"
-        color="var(--color-mint-500)"
-        className="animate-float-slow absolute bottom-20 right-12 h-16 w-16"
-      />
+    <section className="mesh grain relative overflow-hidden">
 
       <div className="relative mx-auto grid max-w-5xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1fr_1.1fr]">
         <div className="text-center lg:text-left">
@@ -58,7 +52,7 @@ export default function Auth({ mode }) {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-5">
-              <div className="flex rounded-full border-[3px] border-ink bg-cream p-1.5">
+              <div className="flex rounded-full border border-line bg-canvas p-1.5">
                 <Link
                   to="/join"
                   className={`flex-1 rounded-full px-4 py-2 text-center font-display font-bold ${
@@ -88,8 +82,8 @@ export default function Auth({ mode }) {
                         onClick={() => setAvatar(a)}
                         aria-pressed={avatar === a}
                         aria-label={`Avatar ${a}`}
-                        className={`grid h-12 w-12 place-items-center rounded-2xl border-[3px] border-ink text-2xl transition-transform hover:-translate-y-0.5 ${
-                          avatar === a ? 'bg-sunshine-500 shadow-[0_4px_0_0_var(--color-ink)]' : 'bg-white'
+                        className={`grid h-12 w-12 place-items-center rounded-2xl border border-line text-2xl transition-transform hover:-translate-y-0.5 ${
+                          avatar === a ? 'bg-sunshine-500 shadow-soft' : 'bg-white'
                         }`}
                       >
                         <span aria-hidden="true">{a}</span>
@@ -106,7 +100,7 @@ export default function Auth({ mode }) {
                     type="text"
                     required
                     placeholder="e.g. Amara"
-                    className="mt-1.5 w-full rounded-2xl border-[3px] border-ink bg-white px-4 py-3 font-bold placeholder:font-normal placeholder:text-ink-soft/50"
+                    className="mt-1.5 w-full rounded-2xl border border-line bg-white px-4 py-3 font-bold placeholder:font-normal placeholder:text-ink-soft/50"
                   />
                 </label>
               )}
@@ -119,7 +113,7 @@ export default function Auth({ mode }) {
                   type={joining ? 'email' : 'text'}
                   required
                   placeholder={joining ? 'you@example.com' : 'you@example.com'}
-                  className="mt-1.5 w-full rounded-2xl border-[3px] border-ink bg-white px-4 py-3 font-bold placeholder:font-normal placeholder:text-ink-soft/50"
+                  className="mt-1.5 w-full rounded-2xl border border-line bg-white px-4 py-3 font-bold placeholder:font-normal placeholder:text-ink-soft/50"
                 />
               </label>
 
@@ -130,7 +124,7 @@ export default function Auth({ mode }) {
                   required
                   minLength={6}
                   placeholder="At least 6 characters"
-                  className="mt-1.5 w-full rounded-2xl border-[3px] border-ink bg-white px-4 py-3 font-bold placeholder:font-normal placeholder:text-ink-soft/50"
+                  className="mt-1.5 w-full rounded-2xl border border-line bg-white px-4 py-3 font-bold placeholder:font-normal placeholder:text-ink-soft/50"
                 />
               </label>
 
@@ -138,7 +132,7 @@ export default function Auth({ mode }) {
                 <label className="block">
                   <span className="font-display font-bold">Grade</span>
                   <select
-                    className="mt-1.5 w-full rounded-2xl border-[3px] border-ink bg-white px-4 py-3 font-bold"
+                    className="mt-1.5 w-full rounded-2xl border border-line bg-white px-4 py-3 font-bold"
                     defaultValue="4"
                   >
                     <option value="pre-k">Pre-K</option>

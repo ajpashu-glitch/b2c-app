@@ -282,7 +282,7 @@ const SKILLS = {
     ],
     4: [
       'Theme of a story',
-      'Summarise a passage',
+      'Summarize a passage',
       'Homophones: their, there, they’re',
       'Relative pronouns',
       'Cite evidence from the text',
@@ -297,7 +297,7 @@ const SKILLS = {
       'Write an opinion piece',
     ],
     6: [
-      'Analyse word choice',
+      'Analyze word choice',
       'Trace an argument',
       'Active and passive voice',
       'Punctuating dialogue',
@@ -313,11 +313,11 @@ const SKILLS = {
       'Write a counterargument',
     ],
     8: [
-      'Analyse theme development',
+      'Analyze theme development',
       'Allusions in literature',
       'Parallel structure',
       'Verbals: gerunds and participles',
-      'Synthesise two sources',
+      'Synthesize two sources',
       'Revise for clarity',
     ],
     9: [
@@ -338,7 +338,7 @@ const SKILLS = {
     ],
     11: [
       'American literature in context',
-      'Analyse a speech',
+      'Analyze a speech',
       'Satire and irony',
       'Complex sentence structures',
       'Research question design',
@@ -466,7 +466,7 @@ const SKILLS = {
       'The Bill of Rights in action',
       'World wars: causes and effects',
       'Civil rights movement',
-      'Analyse a political cartoon',
+      'Analyze a political cartoon',
     ],
   },
   spanish: {
@@ -596,4 +596,76 @@ export const THEME = {
     ring: 'bg-sunshine-300',
     chip: 'bg-sunshine-100 text-sunshine-600',
   },
+}
+
+/* ------------------------------------------------------------------
+   Stages: the grade bands families actually think in, used by the
+   homepage class explorer.
+   ------------------------------------------------------------------ */
+
+export const STAGES = [
+  {
+    id: 'early',
+    name: 'Early years',
+    blurb: 'First numbers, first letters, first "I did it!"',
+    grades: ['pre-k', 'k'],
+    emoji: '🌱',
+    color: 'mint',
+  },
+  {
+    id: 'lower',
+    name: 'Lower primary',
+    blurb: 'Reading takes off and the numbers get real.',
+    grades: ['1', '2', '3'],
+    emoji: '🎈',
+    color: 'sunshine',
+  },
+  {
+    id: 'upper',
+    name: 'Upper primary',
+    blurb: 'Fractions, essays, experiments — the big leap.',
+    grades: ['4', '5'],
+    emoji: '🚲',
+    color: 'tangerine',
+  },
+  {
+    id: 'middle',
+    name: 'Middle school',
+    blurb: 'Algebra begins and arguments need evidence.',
+    grades: ['6', '7', '8'],
+    emoji: '🧭',
+    color: 'blueberry',
+  },
+  {
+    id: 'high',
+    name: 'High school',
+    blurb: 'Quadratics to calculus, analysis to advocacy.',
+    grades: ['9', '10', '11', '12'],
+    emoji: '🎓',
+    color: 'grape',
+  },
+]
+
+/** Which subjects are taught at a given grade. */
+export function subjectsForGrade(gradeId) {
+  return SUBJECTS.filter((s) => s.grades.includes(gradeId))
+}
+
+/** A stable, plausible skill count per grade — derived, never random. */
+export function skillCountForGrade(gradeId) {
+  const subjects = subjectsForGrade(gradeId)
+  const seed = gradeId.split('').reduce((a, c) => a + c.charCodeAt(0), 0)
+  return subjects.length * 120 + (seed % 7) * 15 + 90
+}
+
+/** Two sample skills per subject, for the class explorer preview. */
+export function previewForGrade(gradeId, perSubject = 2) {
+  return subjectsForGrade(gradeId).map((s) => ({
+    subject: s,
+    skills: getSkills(s.id, gradeId).slice(0, perSubject),
+  }))
+}
+
+export function stageForGrade(gradeId) {
+  return STAGES.find((s) => s.grades.includes(gradeId))
 }

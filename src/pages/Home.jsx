@@ -1,75 +1,81 @@
 import { Link } from 'react-router-dom'
 import { Button, Pill, SectionHeading, Blobs, Doodle, Mascot } from '../components/ui'
 import PracticeDemo from '../components/PracticeDemo'
-import { SUBJECTS, GRADES, THEME } from '../data/curriculum'
+import ClassExplorer from '../components/ClassExplorer'
+import { SUBJECTS, THEME } from '../data/curriculum'
 
 const STATS = [
   { value: '20,000+', label: 'skills to explore', emoji: '🧩' },
   { value: '18M', label: 'learners practicing', emoji: '🙌' },
-  { value: 'Pre-K–12', label: 'every year covered', emoji: '🎒' },
+  { value: 'Pre-K–12', label: 'every class covered', emoji: '🎒' },
   { value: '5', label: 'subjects, one world', emoji: '🌈' },
 ]
 
 const STEPS = [
   {
-    n: '1',
+    n: '01',
     title: 'Pick a thing to try',
-    body: 'Choose your grade and subject, or let Skillio suggest a skill that fits you right now.',
-    color: 'bg-bubblegum-300',
+    body: 'Choose your class and subject, or let Skillio suggest a skill that fits you right now.',
     emoji: '👆',
   },
   {
-    n: '2',
+    n: '02',
     title: 'Practice, one question at a time',
     body: 'Questions get a little harder as you go. Miss one? You get a friendly explanation, not a red X.',
-    color: 'bg-sunshine-300',
     emoji: '✏️',
   },
   {
-    n: '3',
+    n: '03',
     title: 'Watch your Star Score climb',
     body: 'Reach 100 and the skill is yours. Collect the trophy, then go find the next one.',
-    color: 'bg-mint-300',
     emoji: '🏆',
   },
 ]
 
+/* Bento: `span` drives the grid footprint so tiles interlock rather than tile evenly. */
 const FEATURES = [
   {
     title: 'Star Score, not grades',
     body: 'A friendly 0–100 meter that rewards sticking with it. Harder questions are worth more, and a wobble never wipes out your progress.',
     emoji: '⭐',
-    tone: 'bg-sunshine-100',
+    color: 'text-sunshine-500',
+    span: 'lg:col-span-2 lg:row-span-2',
+    feature: true,
   },
   {
     title: 'Skill Check finds your level',
-    body: 'A short, no-pressure check that works out exactly where you are in math and reading — then keeps itself up to date as you learn.',
+    body: 'A short, no-pressure check that works out exactly where you are — then keeps itself up to date.',
     emoji: '🧭',
-    tone: 'bg-mint-100',
+    color: 'text-mint-500',
+    span: 'lg:col-span-2',
   },
   {
     title: 'Next-step suggestions',
-    body: 'Skillio always has a “try this next” ready, picked from the skills just above where you are now. No guessing what to do.',
+    body: 'Always a “try this next”, picked from just above where you are now.',
     emoji: '🎯',
-    tone: 'bg-bubblegum-100',
+    color: 'text-bubblegum-500',
+    span: '',
   },
   {
-    title: 'Trophies and certificates',
-    body: 'Earn stickers for days practiced, questions answered and skills mastered. Print a certificate when you hit a big one.',
+    title: 'Trophies & certificates',
+    body: 'Earn stickers for days practiced, questions answered and skills mastered.',
     emoji: '🎖️',
-    tone: 'bg-grape-100',
+    color: 'text-grape-500',
+    span: '',
   },
   {
-    title: 'Explanations that actually explain',
-    body: 'Every wrong answer opens a worked, step-by-step walkthrough in plain language — the kind a patient person would give you.',
+    title: 'Explanations that explain',
+    body: 'Every wrong answer opens a worked, step-by-step walkthrough in plain language.',
     emoji: '💡',
-    tone: 'bg-tangerine-100',
+    color: 'text-tangerine-500',
+    span: 'lg:col-span-2',
   },
   {
     title: 'A calm place to learn',
-    body: 'No ads, no leaderboards to lose, no streak guilt. Just you, one skill, and as much time as you need.',
+    body: 'No ads, no leaderboards to lose, no streak guilt. Just you and one skill.',
     emoji: '🌿',
-    tone: 'bg-blueberry-100',
+    color: 'text-blueberry-500',
+    span: 'lg:col-span-2',
   },
 ]
 
@@ -77,22 +83,22 @@ const VOICES = [
   {
     quote:
       'I did the whole fractions section because the rocket does a little flip when you get to 100. Now fractions are easy actually.',
-    name: 'Amara, age 9',
-    tone: 'bg-sunshine-300',
+    name: 'Amara',
+    role: 'age 9',
     mascot: 'rocket',
   },
   {
     quote:
       'My son used to hide his math homework. Now he shows me his trophy case. Same kid, completely different feeling about it.',
-    name: 'Dev, parent of a 4th grader',
-    tone: 'bg-mint-300',
+    name: 'Dev',
+    role: 'parent of a 4th grader',
     mascot: 'fox',
   },
   {
     quote:
       'I can see in thirty seconds which five students need me at the start of the lesson. That used to take me a whole evening of grading.',
-    name: 'Ms. Okonjo, Grade 6 teacher',
-    tone: 'bg-bubblegum-300',
+    name: 'Ms. Okonjo',
+    role: 'Grade 6 teacher',
     mascot: 'owl',
   },
 ]
@@ -103,7 +109,7 @@ export default function Home() {
       {/* ---------------- Hero ---------------- */}
       <section className="mesh grain relative overflow-hidden border-b border-line">
         <Blobs />
-        <div className="relative mx-auto grid max-w-7xl items-center gap-14 px-4 py-20 sm:px-6 lg:grid-cols-[1.05fr_1fr] lg:py-28">
+        <div className="relative mx-auto grid max-w-7xl items-center gap-16 px-4 py-20 sm:px-6 lg:grid-cols-[1.05fr_1fr] lg:py-28">
           <div className="animate-rise">
             <Pill className="text-ink-soft">
               <span className="h-2 w-2 rounded-full bg-mint-500" aria-hidden="true" />
@@ -112,37 +118,21 @@ export default function Home() {
 
             <h1 className="mt-7 text-[3.25rem] leading-[0.98] sm:text-[4.25rem] lg:text-[5rem]">
               Learning that feels like{' '}
-              <span className="relative inline-block">
-                <span className="accent relative z-10 text-blueberry-600">leveling up</span>
-                <svg
-                  aria-hidden="true"
-                  viewBox="0 0 300 20"
-                  className="absolute -bottom-2 left-0 z-0 w-full sm:-bottom-3"
-                  preserveAspectRatio="none"
-                >
-                  <path
-                    d="M4 13c60-7 130-10 292-6"
-                    fill="none"
-                    stroke="var(--color-sunshine-500)"
-                    strokeWidth="6"
-                    strokeLinecap="round"
-                    opacity="0.9"
-                  />
-                </svg>
-              </span>
+              <span className="accent text-gradient">leveling up</span>
             </h1>
 
             <p className="mt-8 max-w-xl text-xl leading-relaxed text-ink-soft">
               Math, reading, science, social studies and Spanish — 20,000+ bite-sized skills for
-              Pre-K through 12. Answer a question, watch your Star Score grow, collect the trophy.
+              every class from Pre-K to 12. Answer a question, watch your Star Score grow, collect
+              the trophy.
             </p>
 
             <div className="mt-10 flex flex-wrap gap-4">
               <Button to="/join" tone="berry" size="lg">
                 Start practicing free <span aria-hidden="true">→</span>
               </Button>
-              <Button to="/learn" tone="white" size="lg">
-                Browse the skills
+              <Button href="#classes" tone="white" size="lg">
+                Find your class
               </Button>
             </div>
 
@@ -153,9 +143,9 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Hero art: mascot + floating stickers */}
+          {/* Hero art */}
           <div className="relative mx-auto w-full max-w-lg">
-            <div className="sticker-lg relative bg-white/70 p-8 backdrop-blur-sm">
+            <div className="glass edge-lit relative rounded-[2.25rem] p-8">
               <Doodle kind="star" className="animate-twinkle absolute -left-6 -top-6 hidden h-14 w-14 sm:block" />
               <Doodle
                 kind="heart"
@@ -168,7 +158,7 @@ export default function Home() {
                 className="animate-float-slow absolute -bottom-6 left-10 hidden h-12 w-12 sm:block"
               />
 
-              <Mascot name="rocket" className="animate-float mx-auto h-56 w-56" />
+              <Mascot name="rocket" className="animate-float mx-auto h-52 w-52" />
 
               <div className="sticker mt-6 p-5">
                 <p className="eyebrow text-ink-faint">Today’s mission</p>
@@ -203,84 +193,81 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ---------------- Classes ---------------- */}
+      <section id="classes" className="scroll-mt-20 border-b border-line bg-canvas-deep py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
+          <SectionHeading
+            eyebrow="Every class, Pre-K to 12"
+            title="Find the year you’re in"
+            subtitle="Fourteen classes, each broken into skills you can finish in a few minutes. Have a look inside before you sign up for anything."
+          />
+          <div className="mt-14">
+            <ClassExplorer />
+          </div>
+        </div>
+      </section>
+
       {/* ---------------- Subjects ---------------- */}
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
+      <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6">
         <SectionHeading
           eyebrow="Five subjects"
           title="Pick a world to explore"
-          subtitle="Every subject is broken into small skills you can finish in a few minutes. Start anywhere — you can always change your mind."
+          subtitle="Start anywhere — you can always change your mind."
         />
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {SUBJECTS.map((s, i) => {
             const t = THEME[s.color]
             return (
               <Link
                 key={s.id}
                 to={`/learn/${s.id}`}
-                className={`sticker-lg sticker-hover group relative overflow-hidden p-7 ${t.bgSoft}`}
+                className={`bento bloom group p-7 ${t.text} ${i === 0 ? 'sm:col-span-2' : ''}`}
               >
-                <div
-                  className={`absolute -right-10 -top-10 h-32 w-32 rounded-full ${t.ring} opacity-45 blur-2xl`}
-                  aria-hidden="true"
-                />
-                <span className="relative text-5xl" aria-hidden="true">{s.emoji}</span>
-                <h3 className="relative mt-4 text-2xl font-extrabold">{s.name}</h3>
-                <p className={`relative font-display font-bold ${t.text}`}>{s.tagline}</p>
-                <p className="relative mt-3 text-ink-soft">{s.blurb}</p>
-                <div className="relative mt-5 flex items-center justify-between">
-                  <span className="rounded-full border border-line bg-white px-3 py-1 text-sm font-bold">
+                <div className="relative flex items-start gap-4">
+                  <span className="text-4xl" aria-hidden="true">{s.emoji}</span>
+                  <div>
+                    <h3 className="text-2xl font-bold text-ink">{s.name}</h3>
+                    <p className="font-display text-sm font-semibold">{s.tagline}</p>
+                  </div>
+                </div>
+                <p className="relative mt-4 max-w-md text-ink-soft">{s.blurb}</p>
+                <div className="relative mt-6 flex items-center justify-between">
+                  <span className="rounded-full border border-line bg-canvas px-3 py-1 text-sm font-semibold text-ink-soft">
                     {s.skillCount} skills
                   </span>
-                  <span className="font-display font-bold group-hover:translate-x-1 transition-transform">
+                  <span className="font-display text-sm font-semibold text-ink transition-transform duration-300 group-hover:translate-x-1">
                     Explore →
                   </span>
                 </div>
               </Link>
             )
           })}
-
-          {/* Grade quick-jump tile */}
-          <div className="sticker-lg bg-ink p-7 text-white">
-            <h3 className="text-2xl font-extrabold">Jump to your grade</h3>
-            <p className="mt-2 text-white/70">Straight to the skills your class is doing now.</p>
-            <div className="mt-5 flex flex-wrap gap-2">
-              {GRADES.map((g) => (
-                <Link
-                  key={g.id}
-                  to={`/learn/math?grade=${g.id}`}
-                  className="rounded-xl border-[3px] border-white/30 bg-white/10 px-3 py-1.5 font-display font-bold hover:border-sunshine-500 hover:bg-sunshine-500 hover:text-ink"
-                >
-                  {g.short}
-                </Link>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
 
       {/* ---------------- Try it ---------------- */}
       <section className="border-y border-line bg-canvas-deep py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <div className="grid items-center gap-12 lg:grid-cols-2">
+          <div className="grid items-center gap-14 lg:grid-cols-2">
             <div>
               <SectionHeading
                 align="left"
                 eyebrow="Try it right now"
                 title="This is what practice feels like"
-                subtitle="Go on — answer one. Nothing to sign up for, nothing to lose. Get it wrong and you will see exactly what happens next."
+                subtitle="Go on — answer one. Nothing to sign up for. Get it wrong and you will see exactly what happens next."
               />
-              <div className="mt-8 grid gap-4">
+              <div className="mt-10 grid gap-5">
                 {[
                   ['✅', 'Right answers push your Star Score up — more near the start, less near 100.'],
                   ['💭', 'Wrong answers open an explanation, and cost you a little, never everything.'],
                   ['🎯', 'The questions quietly get harder as you get better.'],
                 ].map(([emoji, text]) => (
-                  <div key={text} className="flex items-start gap-3">
-                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-2xl border border-line bg-white text-lg">
+                  <div key={text} className="flex items-start gap-3.5">
+                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-line bg-white text-lg shadow-soft">
                       <span aria-hidden="true">{emoji}</span>
                     </span>
-                    <p className="pt-1.5 font-bold text-ink-soft">{text}</p>
+                    <p className="pt-2 font-medium text-ink-soft">{text}</p>
                   </div>
                 ))}
               </div>
@@ -291,27 +278,29 @@ export default function Home() {
       </section>
 
       {/* ---------------- How it works ---------------- */}
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
+      <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6">
         <SectionHeading
           eyebrow="How it works"
           title="Three steps, then you’re off"
           subtitle="No tutorials to sit through. You will understand Skillio about ninety seconds after you start."
         />
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {STEPS.map((s, i) => (
-            <div key={s.n} className={`sticker-lg relative border-transparent p-7 ${s.color}`}>
-              <span className="absolute -top-6 left-6 grid h-12 w-12 place-items-center rounded-2xl border border-line bg-white font-display text-2xl font-extrabold shadow-soft">
-                {s.n}
-              </span>
-              <span className="mt-4 block text-4xl" aria-hidden="true">{s.emoji}</span>
-              <h3 className="mt-3 text-2xl font-extrabold">{s.title}</h3>
-              <p className="mt-2 font-bold text-ink/70">{s.body}</p>
-            </div>
+        <ol className="mt-14 grid gap-5 md:grid-cols-3">
+          {STEPS.map((s) => (
+            <li key={s.n} className="bento p-8">
+              <div className="flex items-center justify-between">
+                <span className="font-display text-sm font-bold tracking-widest text-ink-faint">
+                  {s.n}
+                </span>
+                <span className="text-3xl" aria-hidden="true">{s.emoji}</span>
+              </div>
+              <h3 className="mt-5 text-xl font-bold">{s.title}</h3>
+              <p className="mt-2 text-ink-soft">{s.body}</p>
+            </li>
           ))}
-        </div>
+        </ol>
       </section>
 
-      {/* ---------------- Features ---------------- */}
+      {/* ---------------- Features (bento) ---------------- */}
       <section className="border-y border-line bg-canvas-deep py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <SectionHeading
@@ -319,12 +308,54 @@ export default function Home() {
             title="Built so kids want to come back"
             subtitle="The clever parts run quietly in the background. What you see is a friendly place that always knows what to give you next."
           />
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-14 grid auto-rows-[minmax(0,auto)] gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {FEATURES.map((f) => (
-              <div key={f.title} className={`sticker sticker-hover p-6 ${f.tone}`}>
-                <span className="text-4xl" aria-hidden="true">{f.emoji}</span>
-                <h3 className="mt-3 text-xl font-extrabold">{f.title}</h3>
-                <p className="mt-2 text-ink-soft">{f.body}</p>
+              <div
+                key={f.title}
+                className={`bento bloom ${f.color} ${f.span} ${f.feature ? 'p-9' : 'p-7'}`}
+              >
+                <span className={f.feature ? 'text-5xl' : 'text-3xl'} aria-hidden="true">
+                  {f.emoji}
+                </span>
+                <h3
+                  className={`mt-4 font-bold text-ink ${f.feature ? 'text-3xl' : 'text-xl'}`}
+                >
+                  {f.title}
+                </h3>
+                <p className={`mt-2.5 text-ink-soft ${f.feature ? 'text-lg' : ''}`}>{f.body}</p>
+
+                {/* The headline tile demonstrates the meter it describes. */}
+                {f.feature && (
+                  <div className="mt-8 rounded-2xl border border-line bg-canvas p-5 text-ink">
+                    {[
+                      ['Multiplication facts', 100, 'from-mint-500 to-mint-300', 'Mastered'],
+                      ['Equivalent fractions', 84, 'from-sunshine-500 to-sunshine-300', 'Nice work'],
+                      ['Angles', 31, 'from-tangerine-500 to-tangerine-300', 'Warming up'],
+                    ].map(([label, val, grad, note]) => (
+                      <div key={label} className="mt-4 first:mt-0">
+                        <div className="flex items-baseline justify-between text-sm">
+                          <span className="font-semibold">{label}</span>
+                          <span className="font-medium text-ink-soft">
+                            {val} · {note}
+                          </span>
+                        </div>
+                        <div className="relative mt-2 h-2.5 overflow-hidden rounded-full bg-canvas-deep">
+                          <div
+                            className={`h-full rounded-full bg-gradient-to-r ${grad}`}
+                            style={{ width: `${val}%` }}
+                          />
+                          <span
+                            className="absolute inset-y-0 left-[80%] w-px bg-ink/20"
+                            aria-hidden="true"
+                          />
+                        </div>
+                      </div>
+                    ))}
+                    <p className="mt-4 text-xs font-medium text-ink-faint">
+                      The tick marks 80 — the point where a skill has clicked.
+                    </p>
+                  </div>
+                )}
               </div>
             ))}
           </div>
@@ -332,30 +363,32 @@ export default function Home() {
       </section>
 
       {/* ---------------- Voices ---------------- */}
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
-        <SectionHeading
-          eyebrow="Kids, parents, teachers"
-          title="What people say about it"
-        />
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {VOICES.map((v, i) => (
-            <figure
-              key={v.name}
-              className={`sticker-lg border-transparent p-7 ${v.tone}`}
-            >
-              <Mascot name={v.mascot} className="h-16 w-16" />
-              <blockquote className="mt-4 font-display text-lg font-bold leading-snug">
-                “{v.quote}”
+      <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6">
+        <SectionHeading eyebrow="Kids, parents, teachers" title="What people say about it" />
+        <div className="mt-14 grid gap-5 md:grid-cols-3">
+          {VOICES.map((v) => (
+            <figure key={v.name} className="bento flex h-full flex-col p-8">
+              <span className="font-display text-5xl leading-none text-line-strong" aria-hidden="true">
+                “
+              </span>
+              <blockquote className="mt-2 flex-1 text-lg leading-relaxed text-ink">
+                {v.quote}
               </blockquote>
-              <figcaption className="mt-4 font-bold text-ink/70">— {v.name}</figcaption>
+              <figcaption className="mt-6 flex items-center gap-3 border-t border-line pt-5">
+                <Mascot name={v.mascot} className="h-11 w-11 shrink-0" />
+                <span>
+                  <span className="block font-display font-semibold">{v.name}</span>
+                  <span className="block text-sm text-ink-soft">{v.role}</span>
+                </span>
+              </figcaption>
             </figure>
           ))}
         </div>
       </section>
 
-      {/* ---------------- Grown-ups strip ---------------- */}
+      {/* ---------------- Grown-ups ---------------- */}
       <section className="border-y border-line bg-canvas-deep py-24">
-        <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-[1.2fr_1fr]">
+        <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-[1.15fr_1fr]">
           <div>
             <SectionHeading
               align="left"
@@ -363,7 +396,7 @@ export default function Home() {
               title="You get the boring-but-useful view"
               subtitle="While they are collecting trophies, you get a plain-English picture of what is going well and what needs a nudge."
             />
-            <ul className="mt-8 grid gap-3 sm:grid-cols-2">
+            <ul className="mt-10 grid gap-3 sm:grid-cols-2">
               {[
                 'Weekly email: what they practiced',
                 'Trouble spots, flagged early',
@@ -372,15 +405,15 @@ export default function Home() {
                 'Up to 5 kids on one plan',
                 'Works alongside school',
               ].map((t) => (
-                <li key={t} className="flex items-center gap-2 font-bold">
-                  <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full border border-line bg-mint-500 text-xs">
+                <li key={t} className="flex items-center gap-2.5 font-medium">
+                  <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-mint-500 text-[0.7rem] text-white">
                     <span aria-hidden="true">✓</span>
                   </span>
                   {t}
                 </li>
               ))}
             </ul>
-            <div className="mt-8 flex flex-wrap gap-4">
+            <div className="mt-10 flex flex-wrap gap-4">
               <Button to="/grown-ups" tone="blue" size="lg">
                 See the grown-up side
               </Button>
@@ -390,27 +423,25 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="sticker-lg bg-white p-6">
-            <p className="font-display text-sm font-bold uppercase tracking-wide text-ink-soft">
-              This week · Amara, Grade 4
-            </p>
+          <div className="sticker-lg bg-white p-7">
+            <p className="eyebrow text-ink-faint">This week · Amara, Grade 4</p>
             {[
               ['Multiplication facts', 100, 'bg-mint-500'],
               ['Equivalent fractions', 84, 'bg-sunshine-500'],
               ['Main idea', 62, 'bg-tangerine-500'],
               ['Angles', 31, 'bg-bubblegum-500'],
             ].map(([label, val, tone]) => (
-              <div key={label} className="mt-4">
-                <div className="flex justify-between font-bold">
+              <div key={label} className="mt-5">
+                <div className="flex justify-between text-sm font-semibold">
                   <span>{label}</span>
                   <span className="text-ink-soft">{val}</span>
                 </div>
-                <div className="mt-1.5 h-4 overflow-hidden rounded-full border border-line bg-white">
+                <div className="mt-2 h-2.5 overflow-hidden rounded-full bg-canvas-deep">
                   <div className={`h-full rounded-full ${tone}`} style={{ width: `${val}%` }} />
                 </div>
               </div>
             ))}
-            <div className="sticker mt-5 bg-sunshine-100 p-3 text-sm font-bold">
+            <div className="mt-7 rounded-2xl bg-sunshine-100 p-4 text-sm font-medium">
               <span aria-hidden="true">💡</span> Suggestion: 10 minutes on angles would round out the
               week nicely.
             </div>
@@ -419,17 +450,15 @@ export default function Home() {
       </section>
 
       {/* ---------------- Final CTA ---------------- */}
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
-        <div className="sticker-lg grain relative overflow-hidden border-transparent bg-gradient-to-br from-blueberry-600 via-grape-500 to-bubblegum-500 px-6 py-20 text-center text-white shadow-float sm:px-12">
+      <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6">
+        <div className="grain relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-blueberry-600 via-grape-500 to-bubblegum-500 px-6 py-20 text-center text-white shadow-float sm:px-12">
           <Mascot name="bot" className="animate-float mx-auto h-28 w-28" />
-          <h2 className="mt-6 text-4xl font-extrabold sm:text-5xl">
-            Ready when you are
-          </h2>
-          <p className="mx-auto mt-4 max-w-xl text-lg text-white/90">
+          <h2 className="mt-7 text-4xl font-bold sm:text-5xl">Ready when you are</h2>
+          <p className="mx-auto mt-4 max-w-xl text-lg text-white/85">
             Make a free account, pick one skill, and see how it feels. That is genuinely the whole
             ask.
           </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
+          <div className="mt-10 flex flex-wrap justify-center gap-4">
             <Button to="/join" tone="primary" size="lg">
               Create a free account
             </Button>

@@ -19,12 +19,16 @@ around a warmer, more contemporary visual language.
   large fills stay calm and the accents do the work. Dark bands use deep ink, not saturated purple.
 - **Texture.** A wide, low-opacity mesh wash on hero sections plus a fine SVG grain, which keeps
   big flat areas from looking like plastic.
+- **Layout.** Bento grids for the subject and feature sections — interlocking tiles of different
+  footprints rather than an even 3-across, with an ambient colour bloom behind each tile's corner.
+- **Extras.** `.glass` frosted panels, a single gradient-text phrase per screen, and `.edge-lit`
+  hairlines that brighten toward the top.
 
 ## What's here
 
 | Route | Page |
 | --- | --- |
-| `/` | Home — hero, subjects, playable practice demo, how it works, features, testimonials |
+| `/` | Home — hero, class explorer, subjects, playable practice demo, how it works, feature bento, testimonials |
 | `/learn` | Every subject and grade in one map |
 | `/learn/:subjectId` | Skill browser with a grade picker, search and per-skill progress |
 | `/skill-check` | The adaptive diagnostic (IXL's Real-Time Diagnostic analogue) |
@@ -41,6 +45,9 @@ Diagnostic → Skill Check**, **Analytics → the grown-up side**.
 
 ## Interactive bits
 
+- **Class explorer** (home) — pick one of five stages (early years → high school), then a
+  class, and see that year's age range, skill count, subjects and sample skills before signing
+  up. Every card deep-links into the full skill browser for that class.
 - **Practice demo** (home) — answer real questions; correct answers raise the Star Score
   (with diminishing gains past 80), wrong ones cost a little and open an explanation.
 - **Skill browser** — grade tabs, live search, per-skill progress meters.
@@ -61,6 +68,7 @@ src/
     ui.jsx             Button, Pill, SectionHeading, Blobs, Doodle, Mascot (inline SVG)
     Navbar.jsx         sticky nav, subjects dropdown, mobile menu
     Footer.jsx
+    ClassExplorer.jsx  stage → class → subject preview, the homepage centrepiece
     StarScore.jsx      0–100 proficiency meter with an 80 milestone tick
     PracticeDemo.jsx   the playable question widget
   data/curriculum.js   subjects, grades and skill lists

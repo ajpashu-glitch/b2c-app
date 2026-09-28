@@ -1,8 +1,9 @@
 name: Deploy to GitHub Pages
 
+# Manual only: Vercel handles deploys for this repo, so this workflow exists
+# purely as a fallback. Run it from the Actions tab if you ever want Pages —
+# it needs Settings -> Pages -> Source: GitHub Actions set once first.
 on:
-  push:
-    branches: [claude/sharp-franklin-twhq90]
   workflow_dispatch:
 
 # Allow one concurrent deployment, and let a run finish rather than

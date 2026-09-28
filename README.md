@@ -77,18 +77,21 @@ src/
 
 ## Deploying
 
-The build is a static bundle, so any static host works. Config is committed for three:
+**This repo deploys to Vercel automatically** — every push to the default branch triggers a
+build, using `vercel.json` below. The other two are committed as alternatives.
+
+The build is a static bundle, so any static host works:
 
 | Host | What to do | SPA routing |
 | --- | --- | --- |
-| **GitHub Pages** | One-time: Settings → Pages → Source: **GitHub Actions**. `.github/workflows/deploy.yml` then builds and publishes on every push. Until that toggle is flipped the workflow fails at `configure-pages`. | `dist/404.html` (Pages has no rewrite rule) |
+| **Vercel** *(active)* | Import the repo once; `vercel.json` supplies the build command, output dir and rewrite. Pushes deploy on their own. | rewrite to `/index.html` (200) |
 | **Netlify** | Point it at the repo; `netlify.toml` supplies build command, publish dir and the rewrite. | `/* → /index.html` 200 |
-| **Vercel** | Import the repo; `vercel.json` supplies the same. | rewrite to `/index.html` |
+| **GitHub Pages** | Manual fallback. Needs Settings → Pages → Source: **GitHub Actions** once, then run the workflow from the Actions tab. | `dist/404.html` (Pages has no rewrite rule) |
 
-Pages serves from `https://<owner>.github.io/<repo>/`, so the workflow passes
-`VITE_BASE=/<repo>/`. Vite's `base` and the router's `basename` both read from it, so asset
-URLs and routes stay in step. Netlify, Vercel and local dev serve from the root and need no
-override.
+Vercel, Netlify and local dev all serve from the root, so no base override is needed. Pages
+serves from `https://<owner>.github.io/<repo>/`, so its workflow passes `VITE_BASE=/<repo>/`;
+Vite's `base` and the router's `basename` both read from it, keeping asset URLs and routes in
+step.
 
 One quirk of the Pages route: a hard refresh on a deep link is answered with HTTP 404 carrying
 `404.html`. The page renders and routes correctly — the status code is cosmetic — but it does

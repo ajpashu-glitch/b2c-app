@@ -75,6 +75,25 @@ src/
   pages/               one file per route
 ```
 
+## Deploying
+
+The build is a static bundle, so any static host works. Config is committed for three:
+
+| Host | What to do | SPA routing |
+| --- | --- | --- |
+| **GitHub Pages** | Settings → Pages → Source: **GitHub Actions**. `.github/workflows/deploy.yml` then builds and publishes on every push. | `dist/404.html` (Pages has no rewrite rule) |
+| **Netlify** | Point it at the repo; `netlify.toml` supplies build command, publish dir and the rewrite. | `/* → /index.html` 200 |
+| **Vercel** | Import the repo; `vercel.json` supplies the same. | rewrite to `/index.html` |
+
+Pages serves from `https://<owner>.github.io/<repo>/`, so the workflow passes
+`VITE_BASE=/<repo>/`. Vite's `base` and the router's `basename` both read from it, so asset
+URLs and routes stay in step. Netlify, Vercel and local dev serve from the root and need no
+override.
+
+One quirk of the Pages route: a hard refresh on a deep link is answered with HTTP 404 carrying
+`404.html`. The page renders and routes correctly — the status code is cosmetic — but it does
+log a 404 in the console. Netlify and Vercel do a true 200 rewrite and have no such artifact.
+
 ## Running it
 
 ```bash

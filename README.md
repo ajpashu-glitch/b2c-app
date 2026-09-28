@@ -81,7 +81,7 @@ The build is a static bundle, so any static host works. Config is committed for 
 
 | Host | What to do | SPA routing |
 | --- | --- | --- |
-| **GitHub Pages** | Settings → Pages → Source: **GitHub Actions**. `.github/workflows/deploy.yml` then builds and publishes on every push. | `dist/404.html` (Pages has no rewrite rule) |
+| **GitHub Pages** | One-time: Settings → Pages → Source: **GitHub Actions**. `.github/workflows/deploy.yml` then builds and publishes on every push. Until that toggle is flipped the workflow fails at `configure-pages`. | `dist/404.html` (Pages has no rewrite rule) |
 | **Netlify** | Point it at the repo; `netlify.toml` supplies build command, publish dir and the rewrite. | `/* → /index.html` 200 |
 | **Vercel** | Import the repo; `vercel.json` supplies the same. | rewrite to `/index.html` |
 
